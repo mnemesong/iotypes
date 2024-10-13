@@ -23,9 +23,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.utils = exports.summarize = exports.select = exports.tableRequest = exports.pagination = exports.order = exports.log = exports.group = exports.filter = void 0;
+exports.utils = exports.summarize = exports.select = exports.tableRequest = exports.pagination = exports.order = exports.log = exports.filter = void 0;
 exports.filter = __importStar(require("./filter"));
-exports.group = __importStar(require("./group"));
 exports.log = __importStar(require("./log"));
 exports.order = __importStar(require("./order"));
 exports.pagination = __importStar(require("./pagination"));

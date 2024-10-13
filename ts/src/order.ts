@@ -1,9 +1,10 @@
+import { order } from ".";
 import { Scalar } from "./utils";
 
 export const allOrderTypes = [
     "desc",
     "asc",
-]
+] as const
 
 export type OrderType = typeof allOrderTypes[number]
 
@@ -33,21 +34,26 @@ export function orderArray<T extends {}>(
     if(!order.orderBy) {
         return arr
     }
+    let copy = [...arr]
     if(order.orderBy === "random") {
-        const copy = [...arr]
         shuffle(copy)
         return copy
     }
-    const copy = [...arr]
     if(order.orderBy.length === 0) {
         return copy
     }
     for(let i = order.orderBy.length - 1; i >= 0; i--) {
-        copy.sort((a, b) => (a[order.orderBy[i][0]] === b[order.orderBy[i][0]]) 
-            ? 0 
-            : (((a[order.orderBy[i][0]] < b[order.orderBy[i][0]]) && (order.orderBy[i][1] === "asc"))
-                ? -1
-                : 1))
+        let key = order.orderBy[i][0]
+        let sort = order.orderBy[i][1]
+        copy = copy.sort((a, b) => {
+            const val = (a[key] === b[key]) 
+                ? 0 
+                : ((sort === "asc") 
+                    ? ((a[key] < b[key]) ? -1 : 1)
+                    : ((a[key] < b[key]) ? 1 : -1))
+            console.log("Compare: ", a, " : ", b, " = ", val)
+            return val
+        })
     }
     return copy
 }

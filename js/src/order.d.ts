@@ -1,5 +1,5 @@
 import { Scalar } from "./utils";
-export declare const allOrderTypes: string[];
+export declare const allOrderTypes: readonly ["desc", "asc"];
 export type OrderType = typeof allOrderTypes[number];
 export type OrderDSL<T extends {}> = [keyof T, OrderType][] | "random";
 export type OrderReq<T extends {}> = {

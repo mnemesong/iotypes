@@ -29,21 +29,26 @@ function orderArray(arr, order) {
     if (!order.orderBy) {
         return arr;
     }
-    if (order.orderBy === "random") {
-        var copy_1 = __spreadArray([], arr, true);
-        shuffle(copy_1);
-        return copy_1;
-    }
     var copy = __spreadArray([], arr, true);
+    if (order.orderBy === "random") {
+        shuffle(copy);
+        return copy;
+    }
     if (order.orderBy.length === 0) {
         return copy;
     }
     var _loop_1 = function (i) {
-        copy.sort(function (a, b) { return (a[order.orderBy[i][0]] === b[order.orderBy[i][0]])
-            ? 0
-            : (((a[order.orderBy[i][0]] < b[order.orderBy[i][0]]) && (order.orderBy[i][1] === "asc"))
-                ? -1
-                : 1); });
+        var key = order.orderBy[i][0];
+        var sort = order.orderBy[i][1];
+        copy = copy.sort(function (a, b) {
+            var val = (a[key] === b[key])
+                ? 0
+                : ((sort === "asc")
+                    ? ((a[key] < b[key]) ? -1 : 1)
+                    : ((a[key] < b[key]) ? 1 : -1));
+            console.log("Compare: ", a, " : ", b, " = ", val);
+            return val;
+        });
     };
     for (var i = order.orderBy.length - 1; i >= 0; i--) {
         _loop_1(i);
