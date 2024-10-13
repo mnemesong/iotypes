@@ -14,6 +14,11 @@ it("test order asc", () => {
         {a: 12, b: "dsa3c1"},
         {a: 20, b: ""},
     ])
+    assert.deepStrictEqual(data, [
+        {a: 12, b: "dsa3c1"},
+        {a: 5, b: "1c124"},
+        {a: 20, b: ""},
+    ])
 })
 
 it("test order desc", () => {
@@ -28,4 +33,19 @@ it("test order desc", () => {
         {a: 12, b: "dsa3c1"},
         {a: 5, b: "1c124"},
     ])
+    assert.deepStrictEqual(data, [
+        {a: 12, b: "dsa3c1"},
+        {a: 5, b: "1c124"},
+        {a: 20, b: ""},
+    ])
+})
+
+it("test no order", () => {
+    const data = [
+        {a: 12, b: "dsa3c1"},
+        {a: 5, b: "1c124"},
+        {a: 20, b: ""},
+    ]
+    const result = orderArray(data, {orderBy: []})
+    assert.deepStrictEqual(result, data)
 })

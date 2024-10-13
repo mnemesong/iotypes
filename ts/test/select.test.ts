@@ -1,8 +1,8 @@
 import { describe, it } from "mocha";
-import { paginationArray } from "../src/pagination";
+import { selectArray } from "../src/select";
 import assert from "assert";
 
-it("test pagination", () => {
+it("test select", () => {
     const data = [
         {
             a: 12,
@@ -25,18 +25,24 @@ it("test pagination", () => {
             c: false
         }
     ]
-    const result = paginationArray(data, {limit: 2, offset: 1})
+    const result = selectArray(data, {select: ["a", "b"]})
     assert.deepStrictEqual(result, [
+        {
+            a: 12,
+            b: "12x",
+        },
         {
             a: 325,
             b: "c4124",
-            c: false
         },
         {
             a: 251,
             b: "",
-            c: true
         },
+        {
+            a: 110,
+            b: "",
+        }
     ])
     assert.deepStrictEqual(data, [
         {
@@ -60,31 +66,5 @@ it("test pagination", () => {
             c: false
         }
     ])
-})
-
-it("test pagination 2", () => {
-    const data = [
-        {
-            a: 12,
-            b: "12x",
-            c: true
-        },
-        {
-            a: 325,
-            b: "c4124",
-            c: false
-        },
-        {
-            a: 251,
-            b: "",
-            c: true
-        },
-        {
-            a: 110,
-            b: "",
-            c: false
-        }
-    ]
-    const result = paginationArray(data, {})
-    assert.deepStrictEqual(result, data)
+    assert.deepStrictEqual(data, selectArray(data, {}))
 })

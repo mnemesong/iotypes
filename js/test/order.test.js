@@ -18,6 +18,11 @@ var assert_1 = __importDefault(require("assert"));
         { a: 12, b: "dsa3c1" },
         { a: 20, b: "" },
     ]);
+    assert_1.default.deepStrictEqual(data, [
+        { a: 12, b: "dsa3c1" },
+        { a: 5, b: "1c124" },
+        { a: 20, b: "" },
+    ]);
 });
 (0, mocha_1.it)("test order desc", function () {
     var data = [
@@ -31,4 +36,18 @@ var assert_1 = __importDefault(require("assert"));
         { a: 12, b: "dsa3c1" },
         { a: 5, b: "1c124" },
     ]);
+    assert_1.default.deepStrictEqual(data, [
+        { a: 12, b: "dsa3c1" },
+        { a: 5, b: "1c124" },
+        { a: 20, b: "" },
+    ]);
+});
+(0, mocha_1.it)("test no order", function () {
+    var data = [
+        { a: 12, b: "dsa3c1" },
+        { a: 5, b: "1c124" },
+        { a: 20, b: "" },
+    ];
+    var result = (0, order_1.orderArray)(data, { orderBy: [] });
+    assert_1.default.deepStrictEqual(result, data);
 });

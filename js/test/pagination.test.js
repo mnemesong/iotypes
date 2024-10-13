@@ -42,4 +42,52 @@ var assert_1 = __importDefault(require("assert"));
             c: true
         },
     ]);
+    assert_1.default.deepStrictEqual(data, [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ]);
+});
+(0, mocha_1.it)("test pagination 2", function () {
+    var data = [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ];
+    var result = (0, pagination_1.paginationArray)(data, {});
+    assert_1.default.deepStrictEqual(result, data);
 });

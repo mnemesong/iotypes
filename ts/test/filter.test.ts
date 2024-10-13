@@ -3,7 +3,7 @@ import { filterArray } from "../src/filter";
 import assert from "assert";
 
 it("test filter simple", () => {
-    const array = [
+    const data = [
         {
             a: 12,
             b: "12x",
@@ -25,7 +25,7 @@ it("test filter simple", () => {
             c: false
         }
     ]
-    const result = filterArray(array, {
+    const result = filterArray(data, {
         filterBy: ['>', ["a"], 100]
     })
     assert.deepStrictEqual(result, [
@@ -45,10 +45,32 @@ it("test filter simple", () => {
             c: false
         },
     ])
+    assert.deepStrictEqual(data, [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ])
 })
 
 it("test filter array", () => {
-    const array = [
+    const data = [
         {
             a: 12,
             b: "12x",
@@ -70,7 +92,7 @@ it("test filter array", () => {
             c: false
         }
     ]
-    const result = filterArray(array, {
+    const result = filterArray(data, {
         filterBy: ['and', ['>', ["a"], 100], ['=', ["c"], false]]
     })
     assert.deepStrictEqual(result, [
@@ -85,10 +107,32 @@ it("test filter array", () => {
             c: false
         }
     ])
+    assert.deepStrictEqual(data, [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ])
 })
 
 it("test array operator", () => {
-    const array = [
+    const data = [
         {
             a: 12,
             b: "12x",
@@ -110,7 +154,7 @@ it("test array operator", () => {
             c: false
         }
     ]
-    const result = filterArray(array, {
+    const result = filterArray(data, {
         filterBy: ['or', ['in', ["a"], [110, 251]], ['=', ["c"], true]]
     })
     assert.deepStrictEqual(result, [
@@ -130,10 +174,32 @@ it("test array operator", () => {
             c: false
         }
     ])
+    assert.deepStrictEqual(data, [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ])
 })
 
 it("test trueable, falsable", () => {
-    const array = [
+    const data = [
         {
             a: 12,
             b: "12x",
@@ -155,7 +221,7 @@ it("test trueable, falsable", () => {
             c: false
         }
     ]
-    const result = filterArray(array, {
+    const result = filterArray(data, {
         filterBy: ['not', ['falsable', ["b"]]]
     })
     assert.deepStrictEqual(result, [
@@ -170,4 +236,53 @@ it("test trueable, falsable", () => {
             c: false
         },
     ])
+    assert.deepStrictEqual(data, [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ])
+})
+
+it("test no filter", () => {
+    const data = [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ]
+    const result = filterArray(data, {})
+    assert.deepStrictEqual(result, data)
 })

@@ -7,6 +7,9 @@ export function selectObj<T extends {}>(
     req: SelectReq<T>
 ): SelectResult<T, typeof req> {
     const result: any = {}
+    if(!req.select) {
+        return {...obj}
+    }
     req.select.forEach(r => {
         result[r] = obj[r]
     })
