@@ -131,3 +131,43 @@ it("test array operator", () => {
         }
     ])
 })
+
+it("test trueable, falsable", () => {
+    const array = [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ]
+    const result = filterArray(array, {
+        filterBy: ['not', ['falsable', ["b"]]]
+    })
+    assert.deepStrictEqual(result, [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+    ])
+})

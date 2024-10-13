@@ -133,3 +133,42 @@ var assert_1 = __importDefault(require("assert"));
         }
     ]);
 });
+(0, mocha_1.it)("test trueable, falsable", function () {
+    var array = [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+        {
+            a: 251,
+            b: "",
+            c: true
+        },
+        {
+            a: 110,
+            b: "",
+            c: false
+        }
+    ];
+    var result = (0, filter_1.filterArray)(array, {
+        filterBy: ['not', ['falsable', ["b"]]]
+    });
+    assert_1.default.deepStrictEqual(result, [
+        {
+            a: 12,
+            b: "12x",
+            c: true
+        },
+        {
+            a: 325,
+            b: "c4124",
+            c: false
+        },
+    ]);
+});

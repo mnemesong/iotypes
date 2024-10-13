@@ -6,7 +6,7 @@ export type ArrayOperator = typeof allArrayOperators[number];
 export declare const allFilterUnaryOperators: readonly ["null", "trueable", "falsable"];
 export type FilterUnaryOperator = typeof allFilterUnaryOperators[number];
 export type FieldOrVal<T extends {}> = Scalar | [keyof T];
-export type FilterDSL<T extends {}> = [FilterBinaryOperator, FieldOrVal<T>, FieldOrVal<T>] | [ArrayOperator, FieldOrVal<T>, FieldOrVal<T>[]] | [FilterUnaryOperator, keyof T] | ["and", ...FilterDSL<T>[]] | ["or", ...FilterDSL<T>[]] | ["not", FilterDSL<T>];
+export type FilterDSL<T extends {}> = [FilterBinaryOperator, FieldOrVal<T>, FieldOrVal<T>] | [ArrayOperator, FieldOrVal<T>, FieldOrVal<T>[]] | [FilterUnaryOperator, FieldOrVal<T>] | ["and", ...FilterDSL<T>[]] | ["or", ...FilterDSL<T>[]] | ["not", FilterDSL<T>];
 export type FilterReq<T extends {}> = {
     filterBy?: FilterDSL<T>;
 };

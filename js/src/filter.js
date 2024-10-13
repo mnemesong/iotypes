@@ -38,11 +38,12 @@ function isObjectMatchs(obj, filter) {
         case "not":
             return !isObjectMatchs(obj, filter[1]);
         case "null":
-            return (obj[filter[1]] === undefined) || (obj[filter[1]] === null);
+            var val = getValBySpec(obj, filter[1]);
+            return (getValBySpec(obj, filter[1]) === undefined) || (val === null);
         case "trueable":
-            return (!!obj[filter[1]]);
+            return !!getValBySpec(obj, filter[1]);
         case "falsable":
-            return (!obj[filter[1]]);
+            return !getValBySpec(obj, filter[1]);
         case "in":
             var comparableVals = filter[2].map(function (f) { return getValBySpec(obj, f); });
             return comparableVals.includes(getValBySpec(obj, filter[1]));
