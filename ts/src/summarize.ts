@@ -31,6 +31,13 @@ export function summarizeMinMax<Vals extends MbString[]|MbNumber[]|MbBigint[]|Mb
         : defVals.reduce((acc: string, el: string) => (acc < el) ? acc: el, defVals[0])
 }
 
+export function summarizeCount<Vals extends MbNumber[]|MbBigint[]|MbBoolean[]>(
+    vals: Vals,
+): number {
+    const defVals = (vals as Scalar[]).filter(v => ((v !== null) && (v !== undefined)))
+    return defVals.length
+}
+
 export function summarizeSum<Vals extends MbNumber[]|MbBigint[]|MbBoolean[]>(
     vals: Vals,
 ): number {
@@ -85,7 +92,7 @@ export function summarizeVals<
             }
             return summarizeAvg(vals as MbNumber[]|MbBigint[]|MbBoolean[]) as any
         case "count":
-            return vals.length as any
+            return summarizeCount(vals as MbNumber[]|MbBigint[]|MbBoolean[]) as any
         default:
             return summarizeMinMax(vals, fn) as any
     }
@@ -101,7 +108,7 @@ export type SummarizeResult<
 export type SummarizeIO<T extends {}, K extends (keyof T & string), N extends string> = 
     (req: SummarizeReq<T, K, N>) => Promise<SummarizeResult<T, K, N, typeof req>>
 
-export function summarizeIOArray<T extends {}, K extends (keyof T & string), N extends string>(
+export function summarizeArray<T extends {}, K extends (keyof T & string), N extends string>(
     arr: T[], 
     dsl: SummarizeReq<T, K, N>
 ): Record<N, SummarizeValsResult<typeof dsl[N][0]>> {

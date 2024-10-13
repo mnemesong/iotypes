@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.makeSummarizeIOArray = exports.summarizeIOArray = exports.summarizeVals = exports.summarizeAvg = exports.summarizeSum = exports.summarizeMinMax = exports.allSummarizeNames = void 0;
+exports.makeSummarizeIOArray = exports.summarizeArray = exports.summarizeVals = exports.summarizeAvg = exports.summarizeSum = exports.summarizeCount = exports.summarizeMinMax = exports.allSummarizeNames = void 0;
 exports.allSummarizeNames = [
     "min",
     "max",
@@ -18,6 +18,11 @@ function summarizeMinMax(vals, fn) {
         : defVals.reduce(function (acc, el) { return (acc < el) ? acc : el; }, defVals[0]);
 }
 exports.summarizeMinMax = summarizeMinMax;
+function summarizeCount(vals) {
+    var defVals = vals.filter(function (v) { return ((v !== null) && (v !== undefined)); });
+    return defVals.length;
+}
+exports.summarizeCount = summarizeCount;
 function summarizeSum(vals) {
     var defVals = vals.filter(function (v) { return ((v !== null) && (v !== undefined)); });
     var trues = defVals.filter(function (v) { return v === true; }).length;
@@ -50,20 +55,20 @@ function summarizeVals(vals, fn) {
             }
             return summarizeAvg(vals);
         case "count":
-            return vals.length;
+            return summarizeCount(vals);
         default:
             return summarizeMinMax(vals, fn);
     }
 }
 exports.summarizeVals = summarizeVals;
-function summarizeIOArray(arr, dsl) {
+function summarizeArray(arr, dsl) {
     var result = {};
     Object.keys(dsl).forEach(function (n) {
         result[n] = summarizeVals(arr.map(function (v) { return v[dsl[n][1]]; }), dsl[n][0]);
     });
     return result;
 }
-exports.summarizeIOArray = summarizeIOArray;
+exports.summarizeArray = summarizeArray;
 function makeSummarizeIOArray(arr) {
     return function (req) {
         try {
