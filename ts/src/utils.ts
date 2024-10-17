@@ -1,3 +1,14 @@
+export type Key =
+    | number
+    | string
+
+export const allKeyTypes = [
+    "number",
+    "string",
+]
+
+export type Transaction<T, V> = (f: ((api: T) => Promise<V>)) => Promise<V>
+
 export type Scalar =
     | number
     | undefined
@@ -14,8 +25,6 @@ export const allScalarTypes = [
     "bigint",
     "boolean",
 ]
-
-export type ScalarType = typeof allScalarTypes[number]
 
 export type TimeFormatter = (time: Date) => string
 

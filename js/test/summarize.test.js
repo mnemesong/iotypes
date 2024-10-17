@@ -118,6 +118,6 @@ var assert_1 = __importDefault(require("assert"));
     var max = (0, summarize_1.summarizeArray)(data, { sum: ["sum", "a"], avg: ["avg", "c"] });
     assert_1.default.deepStrictEqual(max, {
         sum: 698,
-        ang: 0.5,
+        avg: 0.5,
     });
 });

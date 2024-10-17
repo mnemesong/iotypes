@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TimeFormatterYMDHIS = exports.TimeFormatterHIS = exports.TimeFormatterYMD = exports.TimeFormatterDateString = exports.TimeFormatterISO = exports.TimeFormatterTimestamp = exports.TimeFormatterUTC = exports.allScalarTypes = void 0;
+exports.TimeFormatterYMDHIS = exports.TimeFormatterHIS = exports.TimeFormatterYMD = exports.TimeFormatterDateString = exports.TimeFormatterISO = exports.TimeFormatterTimestamp = exports.TimeFormatterUTC = exports.allScalarTypes = exports.allKeyTypes = void 0;
+exports.allKeyTypes = [
+    "number",
+    "string",
+];
 exports.allScalarTypes = [
     "number",
     "undefined",

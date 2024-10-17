@@ -12,6 +12,7 @@ function makeTableRequestIOArray(arr) {
         return {
             paginated: (0, pagination_1.makePaginationIOArray)(prepared),
             summary: (0, summarize_1.makeSummarizeIOArray)(prepared),
+            count: function () { return Promise.resolve(arr.length); },
         };
     };
 }

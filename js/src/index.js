@@ -23,12 +23,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.utils = exports.summarize = exports.select = exports.tableRequest = exports.pagination = exports.order = exports.log = exports.filter = void 0;
+exports.utils = exports.summarize = exports.select = exports.tableTransaction = exports.tableSave = exports.tableRequest = exports.pagination = exports.order = exports.log = exports.filter = void 0;
 exports.filter = __importStar(require("./filter"));
 exports.log = __importStar(require("./log"));
 exports.order = __importStar(require("./order"));
 exports.pagination = __importStar(require("./pagination"));
 exports.tableRequest = __importStar(require("./table-request"));
+exports.tableSave = __importStar(require("./table-save"));
+exports.tableTransaction = __importStar(require("./table-transaction"));
 exports.select = __importStar(require("./select"));
 exports.summarize = __importStar(require("./summarize"));
 exports.utils = __importStar(require("./utils"));
